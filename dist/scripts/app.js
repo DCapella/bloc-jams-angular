@@ -22,6 +22,19 @@
       controller: 'CollectionCtrl as collection',
       templateUrl: '/templates/collection.html'
     });
+    //edit
+    
+
+/*
+    .state('player_bar', {
+      url: '/player_bar',
+      controller: 'PlayerBarCtrl as player_bar',
+      templateUrl: '/templates/player_bar.html'
+    });
+*/
+
+    
+    //end of edit
   }
   
   angular
