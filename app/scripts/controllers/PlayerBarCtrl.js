@@ -8,4 +8,4 @@
   angular
     .module('blocJams')
     .controller('PlayerBarCtrl', ['Fixtures', 'SongPlayer', PlayerBarCtrl]);
-});
+})();
