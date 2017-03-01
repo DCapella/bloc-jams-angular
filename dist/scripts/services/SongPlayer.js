@@ -2,11 +2,15 @@
   //edit
 
   function SongPlayer($rootScope, Fixtures) {
-
-  //function SongPlayer(Fixtures) {
     
-    //end of edit
-    console.log("start of SongPlayer()");
+/*
+    @desc stopSong is a function to stop song;
+*/
+    var stopSong = function() {
+      currentBuzzObject.stop();
+      SongPlayer.currentSong.playing = null;
+    };
+
 /*
   * @var SongPlayer
   * @desc creating empty var
@@ -42,9 +46,7 @@
     
     var setSong = function(song) {
       if (currentBuzzObject) {
-        currentBuzzObject.stop();
-        //SongPlayer.
-        SongPlayer.currentSong.playing = null;
+        stopSong();
       } 
       
       currentBuzzObject = new buzz.sound(song.audioUrl, {
@@ -101,8 +103,23 @@
       currentSongIndex--;
       
       if (currentSongIndex < 0) {
-        currentBuzzObject.stop();
-        SongPlayer.currentSong.playing = null;
+        stopSong();
+      } else {
+        var song = currentAlbum.songs[currentSongIndex];
+        setSong(song);
+        playSong(song);
+      }
+    };
+    
+/*
+    @desc SongPlayer.next; its a next button
+*/
+    SongPlayer.next = function() {
+      var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+      currentSongIndex++;
+      
+      if(currentSongIndex == currentAlbum.songs.length) {
+        stopSong();
       } else {
         var song = currentAlbum.songs[currentSongIndex];
         setSong(song);
